@@ -19,16 +19,10 @@
       </div>
     </div>
   </div>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
+  <div class="navbar navbar-dark shadow-sm">
     <div class="container">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-          class="me-3 bi bi-ticket-perforated" viewBox="0 0 16 16">
-          <path
-            d="M4 4.85v.9h2v-.9H4Zm7 0v.9h2v-.9h-1Zm-7 1.8v.9h2v-.9H4Zm7 0v.9h2v-.9h-1Zm-7 1.8v.9h2v-.9H4Zm7 0v.9h2v-.9h-1Zm-7 1.8v.9h2v-.9H4Zm7 0v.9h2v-.9h-1Z" />
-          <path
-            d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h23a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h23a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z" />
-        </svg>
+        <img src="/assets/favicon-32x32.png" title="WorkoutChamp" class="me-2">
 
         <strong>WorkoutChamp</strong>
       </a>
@@ -42,23 +36,25 @@
 
 <main>
   <section class="container">
-    <div class="row mb-5 mt-5">
+    <div class="row mb-5 mt-5"><div class="col"></div></div>
+    <div class="row mb-5 mt-5"><div class="col"></div></div>
+    <div class="row mb-5 mt-5 text-center">
       <div class="col">
-        .col
-      </div>
-      <div class="col">
-        .col
-      </div>
-      
-    </div>
-    <div class="row mb-5 mt-5">
-      <div class="col">
-        .col
+        {{ nrOfWorkoutsCompleted }}
       </div>
     </div>
-    <div class="row action-buttons">
+    <div class="row mb-5 mt-5"><div class="col"></div></div>
+    <div class="row mb-5 mt-5"><div class="col"></div></div>
+    <div class="row action-buttons text-center">
       <div class="col">
-        <!--<button type="button" (click)="increase()" class="btn btn-success btn-block">Tjuvåkt</button>-->
+        <svg xmlns="http://www.w3.org/2000/svg"  (click)="decrease()"  width="65" height="65" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+        </svg>
+      </div>
+      <div class="col">
+        <svg xmlns="http://www.w3.org/2000/svg"  (click)="increase()" width="65" height="65" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+        </svg>
       </div>
     </div>
   </section>
