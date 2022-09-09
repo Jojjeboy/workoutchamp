@@ -13,6 +13,7 @@ export class AppComponent implements OnInit{
   private healthCareAllowance:number = 2500;
   public nrOfWorkoutsCompleted: number = 1;
   public priceOfEachVisit: number = this.priceOfWorkoutSubscription + this.priceOfWorkoutCard - this.healthCareAllowance;
+  public showResetBtn = false;
 
   constructor(private localStorageService: LocalStorageServiceService){}
 
@@ -38,6 +39,21 @@ export class AppComponent implements OnInit{
       this.recalculatePrice();
     }
   }
+
+  public reset(){
+    if(this.showResetBtn){
+      this.nrOfWorkoutsCompleted = 0;
+      this.localStorageService.reset();
+    }
+    this.showResetBtn = false;
+  }
+
+  public showResetButton(){
+    if(!this.showResetBtn){
+      this.showResetBtn = true;
+    }
+  }
+
 
   private recalculatePrice(){
     if(this.nrOfWorkoutsCompleted > 0){
