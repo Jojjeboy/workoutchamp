@@ -4,8 +4,8 @@
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
           <h4 class="text-white">Nollställ</h4>
-          <p class="text-muted" *ngIf="!showResetBtn">Vill du nollställa räknaren? &nbsp; &nbsp; <button (click)="showResetButton()" class="btn btn-outline-danger me-md-2 btn-sm" type="button">Nollställ räknaren</button>
-            <button *ngIf="showResetBtn" (click)="showResetButton()" class="btn btn-outline-danger me-md-2 btn-sm" type="button">Nollställ räknaren</button>
+          <p class="text-muted" *ngIf="!showResetBtn">Vill du nollställa räknaren? &nbsp; &nbsp; 
+            <button [disabled]="showResetBtn || nrOfWorkoutsCompleted === 0"  (click)="showResetButton()" class="btn btn-outline-danger me-md-2 btn-sm" type="button">Nollställ räknaren</button>
           </p>
           <p class="text-muted" *ngIf="showResetBtn">Är du säker? &nbsp; &nbsp; 
             <button *ngIf="showResetBtn" (click)="reset()" data-bs-toggle="collapse" data-bs-target="#navbarHeader" class="btn btn-danger me-md-2 btn-sm" type="button">Ja, nollställ räknaren</button>
