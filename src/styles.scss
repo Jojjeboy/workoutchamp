@@ -2,7 +2,9 @@
 
 $accentColor: #02adb5;
 
-
+body {
+    touch-action: pan-y;
+  }
 
 .bi {
     vertical-align: -.125em;
