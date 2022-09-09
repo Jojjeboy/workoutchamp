@@ -5,7 +5,7 @@
         <div class="col-sm-8 col-md-7 py-4">
           <h4 class="text-white">Nollställ</h4>
           <p class="text-muted" *ngIf="!showResetBtn">Vill du nollställa räknaren? &nbsp; &nbsp; 
-            <button [disabled]="showResetBtn || nrOfWorkoutsCompleted === 0"  (click)="showResetButton()" class="btn btn-outline-danger me-md-2 btn-sm" type="button">Nollställ räknaren</button>
+            <button [disabled]="showResetBtn || nrOfWorkoutsCompleted === 1"  (click)="showResetButton()" class="btn btn-outline-danger me-md-2 btn-sm" type="button">Nollställ räknaren</button>
           </p>
           <p class="text-muted" *ngIf="showResetBtn">Är du säker? &nbsp; &nbsp; 
             <button *ngIf="showResetBtn" (click)="reset()" data-bs-toggle="collapse" data-bs-target="#navbarHeader" class="btn btn-danger me-md-2 btn-sm" type="button">Ja, nollställ räknaren</button>
@@ -17,7 +17,7 @@
   <div class="navbar navbar-dark shadow-sm">
     <div class="container">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        <img src="assets/favicon-32x32.png" title="WorkoutChamp" class="me-2">
+        <img src="./assets/favicon-32x32.png" title="WorkoutChamp" class="me-2">
 
         <strong>WorkoutChamp</strong>
       </a>
