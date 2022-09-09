@@ -22,7 +22,11 @@ export class AppComponent implements OnInit{
   }
 
   public getCount() {
-    this.nrOfWorkoutsCompleted = this.localStorageService.getCounter();
+    const lsValue = this.localStorageService.getCounter();
+    if(lsValue > 0){
+      this.nrOfWorkoutsCompleted = lsValue;
+    }
+    this.localStorageService.writeLS(this.nrOfWorkoutsCompleted);
     this.recalculatePrice();
   }
 
