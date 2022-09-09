@@ -11,7 +11,7 @@ export class AppComponent implements OnInit{
   private priceOfWorkoutSubscription:number = 2995;
   private priceOfWorkoutCard:number = 100;
   private healthCareAllowance:number = 2500;
-  public nrOfWorkoutsCompleted: number = 0;
+  public nrOfWorkoutsCompleted: number = 1;
   public priceOfEachVisit: number = this.priceOfWorkoutSubscription + this.priceOfWorkoutCard - this.healthCareAllowance;
 
   constructor(private localStorageService: LocalStorageServiceService){}
@@ -44,5 +44,5 @@ export class AppComponent implements OnInit{
       this.priceOfEachVisit = (this.priceOfWorkoutSubscription + this.priceOfWorkoutCard - this.healthCareAllowance) / this.nrOfWorkoutsCompleted
     }
   }
-  
+
 }
