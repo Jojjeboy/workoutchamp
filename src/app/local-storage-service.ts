@@ -1,50 +1,83 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 
 @Injectable()
 export class LocalStorageServiceService {
 
-  key = 'workoutchamp';
   constructor() {
     if (window.hasOwnProperty('localStorage')) {
-      if (localStorage.getItem(this.key) === null) {
-        localStorage.setItem(this.key, '0');
+    } else {
+      window.alert('Please considering upgrading browser to be able to use Localstorage');
+    }
+  }
+
+  private initializeKey(key: string) {
+      localStorage.setItem(key, '0');
+  }
+
+  public getData(key: string) {
+    if (localStorage.getItem(key) === null) {
+      this.initializeKey(key);
+    }
+    return localStorage.getItem(key);
+  }
+
+  public saveData(key: string, value: string) {
+    localStorage.setItem(key, value);
+  }
+  
+  public removeData(key: string) {
+    localStorage.removeItem(key);
+  }
+
+  /*
+  constructor(
+    
+  ) {
+    if (window.hasOwnProperty('localStorage')) {
+      if (localStorage.getItem(gymKey) != undefined && localStorage.getItem(homeKey) === null) {
+        this.gymKey  = gymKey || 'gymKey';
+        this.homeKey  = homeKey || 'homeKey';
+        localStorage.setItem(this.gymKey, '0');
+        localStorage.setItem(this.homeKey, '0');
       }
     } else {
       window.alert('Please considering upgrading browser to be able to use Localstorage');
     }
   }
 
-  getCounter(): number {
-    let counter = localStorage.getItem(this.key);
+  getCounter(key: string): number {
+    let counter = localStorage.getItem(key);
     return parseInt(counter!);
   }
 
-  increase() {
-    let value:number = this.getCounter();
+  increase(key: string) {
+    let value:number = this.getCounter(key);
     value = value + 1;
-    this.writeLS(value);
+    this.writeLS(key,value);
   }
 
-  decrease() {
-    let value:number =  this.getCounter();
+  decrease(key: string) {
+    let value:number =  this.getCounter(key);
     if(value > 0){
         value = value - 1;
-        this.writeLS(value);
+        this.writeLS(key,value);
     }
     
   }
 
-  reset() {
-    this.writeLS(0);
+  reset(key: string): void {
+    this.writeLS(key,0);
   }
 
-  writeLS(value: number): void {
-    localStorage.setItem(this.key, JSON.stringify(value));
+  writeLS(key: string, value: number): void {
+    localStorage.setItem(key, JSON.stringify(value));
   }
 
-  clear() {
-    localStorage.removeItem(this.key);
+  clear(key: string): void {
+    localStorage.removeItem(key);
   }
+
+  */
 
  
 }

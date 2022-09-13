@@ -5,11 +5,11 @@
         <div class="col-sm-8 col-md-7 py-4">
           <h4 class="text-white">Nollställ</h4>
           <p class="text-muted" *ngIf="!showResetBtn">Vill du nollställa räknaren? &nbsp; &nbsp;
-            <button [disabled]="showResetBtn || nrOfWorkoutsCompleted === 1" (click)="showResetButton()"
+            <button [disabled]="showResetBtn || nrOfGymWorkoutsCompleted === 1" (click)="showGymResetButton()"
               class="btn btn-outline-danger me-md-2 btn-sm" type="button">Nollställ räknaren</button>
           </p>
           <p class="text-muted" *ngIf="showResetBtn">Är du säker? &nbsp; &nbsp;
-            <button *ngIf="showResetBtn" (click)="reset()" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+            <button *ngIf="showResetBtn" (click)="resetGym()" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
               class="btn btn-danger me-md-2 btn-sm" type="button">Ja, nollställ räknaren</button>
           </p>
         </div>
@@ -37,7 +37,7 @@
     <div class="row mb-5 mt-5"><div class="col"></div></div>
     <div class="row mb-5 mt-5 text-center">
       <div class="col">
-        <h1><span class="accent">{{ nrOfWorkoutsCompleted }}</span> träningspass</h1>
+        <h1><span class="accent">{{ nrOfGymWorkoutsCompleted }}</span> träningspass</h1>
       </div>
     </div>
     <div class="row mb-5 mt-5 text-center">
@@ -65,18 +65,18 @@
         <div class="card text-center">
           <img src="../assets/gym.jpg" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title"><span class="accent">{{ nrOfWorkoutsCompleted }}</span> träningspass</h5>
+            <h5 class="card-title"><span class="accent">{{ nrOfGymWorkoutsCompleted }}</span> träningspass</h5>
             <p class="card-text text-muted">Antal pass genomförda på Nordic wellness gymanläggningar. Kortet kostar <span class="accent"><strong>{{ priceOfEachVisit | number: '1.0-2' }}kr</strong></span> uträknat per träningstillfälle</p>
           </div>
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <svg xmlns="http://www.w3.org/2000/svg"  (click)="decrease()"  width="65" height="65" fill="currentColor" class="bi bi-dash red" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg"  (click)="decreaseGym()"  width="65" height="65" fill="currentColor" class="bi bi-dash red" viewBox="0 0 16 16">
                   <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
                 </svg>
               </div>
               <div class="col">
-                <svg xmlns="http://www.w3.org/2000/svg"  (click)="increase()" width="65" height="65" fill="currentColor" class="bi bi-plus-lg accent" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg"  (click)="increaseGym()" width="65" height="65" fill="currentColor" class="bi bi-plus-lg accent" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                 </svg>
               </div>
@@ -90,18 +90,18 @@
         <div class="card text-center">
           <img src="../assets/homeworkout.jpg" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title"><span class="accent">{{ nrOfWorkoutsCompleted }}</span> träningspass</h5>
-            <p class="card-text text-muted">Antal pass genomförda på Nordic wellness gymanläggningar. Kortet kostar <span class="accent"><strong>{{ priceOfEachVisit | number: '1.0-2' }}kr</strong></span> uträknat per träningstillfälle</p>
+            <h5 class="card-title"><span class="accent">{{ nrOfHomeWorkoutsCompleted }}</span> träningspass</h5>
+            <p class="card-text text-muted">Antal pass genomförda hemmaträningar. </p>
           </div>
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <svg xmlns="http://www.w3.org/2000/svg"  (click)="decrease()"  width="65" height="65" fill="currentColor" class="bi bi-dash red" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg"  (click)="decreaseHomeWorkout()"  width="65" height="65" fill="currentColor" class="bi bi-dash red" viewBox="0 0 16 16">
                   <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
                 </svg>
               </div>
               <div class="col">
-                <svg xmlns="http://www.w3.org/2000/svg"  (click)="increase()" width="65" height="65" fill="currentColor" class="bi bi-plus-lg accent" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg"  (click)="increaseHomeWorkout()" width="65" height="65" fill="currentColor" class="bi bi-plus-lg accent" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                 </svg>
               </div>

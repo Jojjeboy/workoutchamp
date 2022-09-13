@@ -1,67 +1,93 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageServiceService } from './local-storage-service';
+import { TallyService } from './tally-service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [
+    {provide: 'gymKey', useValue: 'gymKeys'},
+    {provide: 'homeKey', useValue: 'homeKeys'}
+  ]
 })
 
 export class AppComponent implements OnInit{
   private priceOfWorkoutSubscription:number = 2995;
   private priceOfWorkoutCard:number = 100;
   private healthCareAllowance:number = 2500;
-  public nrOfWorkoutsCompleted: number = 1;
+  public nrOfGymWorkoutsCompleted: number = 1;
+  public nrOfHomeWorkoutsCompleted: number = 2;
   public priceOfEachVisit: number = this.priceOfWorkoutSubscription + this.priceOfWorkoutCard - this.healthCareAllowance;
   public showResetBtn = false;
 
-  constructor(private localStorageService: LocalStorageServiceService){}
+  constructor(private tallyService: TallyService){}
 
   ngOnInit(){
     this.getCount();
   }
 
   public getCount() {
-    const lsValue = this.localStorageService.getCounter();
-    if(lsValue > 0){
-      this.nrOfWorkoutsCompleted = lsValue;
+    const gymLsValue = this.tallyService.getGymCounter();
+    const homeWorkoutLsValue = this.tallyService.getHomeWorkoutCounter();
+    if(gymLsValue > this.nrOfGymWorkoutsCompleted){
+      this.nrOfGymWorkoutsCompleted = gymLsValue;
     }
-    this.localStorageService.writeLS(this.nrOfWorkoutsCompleted);
-    this.recalculatePrice();
+    else {
+      this.tallyService.saveGymCounter(this.nrOfGymWorkoutsCompleted);
+    }
+    if(homeWorkoutLsValue > this.nrOfHomeWorkoutsCompleted){
+      this.nrOfHomeWorkoutsCompleted = homeWorkoutLsValue;
+    }
+    else {
+      this.tallyService.saveHomeWorkoutCounter(this.nrOfHomeWorkoutsCompleted);
+    }
+    //this.localStorageService.writeLS('gym',this.nrOfGymWorkoutsCompleted);
+    this.recalculateGymPrice();
   }
 
-  public increase(){
-    this.nrOfWorkoutsCompleted += 1;
-    this.localStorageService.increase();
-    this.recalculatePrice();
+  public increaseGym(){
+    this.nrOfGymWorkoutsCompleted += 1;
+    this.tallyService.saveGymCounter(this.nrOfGymWorkoutsCompleted);
+    this.recalculateGymPrice();
   }
 
-  public decrease(){
-    if(this.nrOfWorkoutsCompleted > 0){
-      this.nrOfWorkoutsCompleted -= 1;
-      this.localStorageService.decrease();
-      this.recalculatePrice();
+  public decreaseGym(){
+    if(this.nrOfGymWorkoutsCompleted > 0){
+      this.nrOfGymWorkoutsCompleted -= 1;
+      this.tallyService.saveGymCounter(this.nrOfGymWorkoutsCompleted);
+      this.recalculateGymPrice();
     }
   }
 
-  public reset(){
+  public increaseHomeWorkout(){
+    this.nrOfHomeWorkoutsCompleted += 1;
+    this.tallyService.saveHomeWorkoutCounter(this.nrOfHomeWorkoutsCompleted);
+  }
+
+  public decreaseHomeWorkout(){
+    this.nrOfHomeWorkoutsCompleted -= 1;
+    this.tallyService.saveHomeWorkoutCounter(this.nrOfHomeWorkoutsCompleted);
+  }
+
+  public resetGym(){
     if(this.showResetBtn){
-      this.nrOfWorkoutsCompleted = 0;
-      this.localStorageService.reset();
+      this.nrOfGymWorkoutsCompleted = 0;
+      this.tallyService.saveGymCounter(this.nrOfGymWorkoutsCompleted);
     }
     this.showResetBtn = false;
   }
 
-  public showResetButton(){
+  public showGymResetButton(){
     if(!this.showResetBtn){
       this.showResetBtn = true;
     }
   }
 
 
-  private recalculatePrice(){
-    if(this.nrOfWorkoutsCompleted > 0){
-      this.priceOfEachVisit = (this.priceOfWorkoutSubscription + this.priceOfWorkoutCard - this.healthCareAllowance) / this.nrOfWorkoutsCompleted
+  private recalculateGymPrice(){
+    if(this.nrOfGymWorkoutsCompleted > 0){
+      this.priceOfEachVisit = (this.priceOfWorkoutSubscription + this.priceOfWorkoutCard - this.healthCareAllowance) / this.nrOfGymWorkoutsCompleted
     }
   }
 

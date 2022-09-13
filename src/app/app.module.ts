@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LocalStorageServiceService } from './local-storage-service';
+import { TallyService } from './tally-service';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { LocalStorageServiceService } from './local-storage-service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [LocalStorageServiceService],
+  providers: [LocalStorageServiceService, TallyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
