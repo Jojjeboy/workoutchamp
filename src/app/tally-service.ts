@@ -1,43 +1,30 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { LocalStorageServiceService } from './local-storage-service';
+import { LsTypeEnum } from './LsTypeEnum';
 
 @Injectable()
 export class TallyService {
 
   constructor(private lsService: LocalStorageServiceService) { }
 
-  private gymKey: string = 'gymKey';
-  private homeKey: string = 'homeKey';
-
-  /**
-   * GYM STUFF
-   */
-  public getGymCounter(): number {
-    const counter = this.lsService.getData(this.gymKey); 
-    return parseInt(counter!);
+  public saveCounter(key: string, value: number){
+    if(key === LsTypeEnum.gymKey.toString() || key === LsTypeEnum.homeWorkout.toString()){
+      this.lsService.saveData(key, JSON.stringify(value));
+    }
   }
 
-  public saveGymCounter(value: number): void {
-    this.lsService.saveData(this.gymKey, JSON.stringify(value));
+  public getCounter(key: string): number {
+    if(key === LsTypeEnum.gymKey.toString() || key === LsTypeEnum.homeWorkout.toString()){
+      const counter = this.lsService.getData(key);
+      return parseInt(counter!);
+    }
+    return 0;
   }
 
-  public clearGymCounter(): void {
-    this.lsService.removeData(this.gymKey);
+  public clearCounter(key: string): void {
+    if(key === LsTypeEnum.gymKey.toString() || key === LsTypeEnum.homeWorkout.toString()){
+      this.lsService.removeData(key);
+    }
   }
 
-  /**
-   * HOME WORKOUT STUFF
-   */
-   public getHomeWorkoutCounter(): number {
-    const counter = this.lsService.getData(this.homeKey);
-    return parseInt(counter!);
-  }
-
-  public saveHomeWorkoutCounter(value: number): void {
-    this.lsService.saveData(this.homeKey, JSON.stringify(value));
-  }
-
-  public clearHomeWorkoutCounter(): void {
-    this.lsService.removeData(this.homeKey);
-  }
 }

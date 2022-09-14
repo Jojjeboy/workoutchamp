@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LocalStorageServiceService } from './local-storage-service';
+import { LsTypeEnum } from './LsTypeEnum';
 import { TallyService } from './tally-service';
 
 @NgModule({
